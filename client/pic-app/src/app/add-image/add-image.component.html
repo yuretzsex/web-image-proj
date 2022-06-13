@@ -1,0 +1,53 @@
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add new image</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group" *ngIf="selectedValue == 2">
+                        <label class="form-label" for="customFile">Please select file</label>
+                        <input type="file" class="form-control" id="customFile" (change)="onFileSelected($event)" />
+                    </div>
+
+                    <div class="form-group" *ngIf="selectedValue == 1">
+                        <label class="form-label" for="customUrl">Url</label>
+                        <input type="text" class="form-control" id="customUrl" [(ngModel)]="selected_url"
+                            name="selectUrl" />
+                    </div>
+
+                    <div *ngIf="selectedValue != null">
+                        <div class="form-group">
+                            <label for="formGroupExampleInput">Title</label>
+                            <input type="text" class="form-control" id="formGroupExampleInput"
+                                placeholder="Example input" name="selectTitle" [(ngModel)]="title">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlTextarea1">Description</label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                                name="selectDescription" [(ngModel)]="description"></textarea>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" (click)="onUpload()"
+                    *ngIf="selectedValue != null">Send</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="mb-3">
+    <form>
+        <select class="form-select" aria-label="Default select example" [(ngModel)]="selectedValue" name="selectType"
+            id="change" (change)="openModal($event)">
+            <option [ngValue]="null" disabled>Select type</option>
+            <option *ngFor="let c of loadTypes" [ngValue]="c.id">{{c.name}}</option>
+        </select>
+    </form>
+</div>
