@@ -13,7 +13,7 @@ type File struct {
 type Url struct {
 	Url         string `json:"url,omitempty" validate:"required"`
 	Title       string `json:"title,omitempty" validate:"required"`
-	Description string `json:"description,omitempty" validate:"required"`
+	Description string `json:"description,omitempty"`
 	UserID      uint64 `json:"user_id,omitempty" validate:"required"`
 }
 
